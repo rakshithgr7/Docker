@@ -1,0 +1,34 @@
+
+Hosting simple apache server
+mkdir try
+cd try
+vi Dockerfile
+
+
+FROM ubuntu
+RUN apt-get update -y
+RUN  apt-get install apache2 -y
+COPY basic.html /var/www/html/basic2.html
+CMD ["apachectl", "-D", "FOREGROUND"]
+
+
+basic2.html
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Datagrokr</h1>
+<p>the first HTML docker</p>
+
+</body>
+</html>
+
+docker build -t goodone .
+
+
+docker run -dit -p 8080:80 goodone
+
+then using public ip of ec2 instance and port 8080 -http://18.212.173.126:8080/basic2.html was able to access the page
+
+
+
